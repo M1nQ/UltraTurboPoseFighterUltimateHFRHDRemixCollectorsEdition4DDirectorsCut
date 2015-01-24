@@ -28,7 +28,7 @@ public class Game : MonoBehaviour
 		if (poses.Count <= 0)
 		{
 			for (int i = 0; i < GameObject.Find("Tietoa").GetComponent<Singleton>().difficulty; ++i)
-				poses.Add(Random.Range(0,5);
+				poses.Add(Random.Range(0,5));
 		}
 	}
 	private void PlayerOne()
