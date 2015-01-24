@@ -100,7 +100,7 @@ public class PlayerOne : MonoBehaviour
 	}
 	private void SetPlayer()
 	{
-		if (name = "PlayerOne")
+		if (name == "PlayerOne")
 			GetComponent<Animator>().runtimeAnimatorController = GetAnimations(GameObject.Find("Tietoa").GetComponent<Singleton>().playerOneChar);
 		else
 		{
