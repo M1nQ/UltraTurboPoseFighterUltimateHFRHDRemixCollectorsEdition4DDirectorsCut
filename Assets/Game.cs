@@ -65,8 +65,18 @@ public class Game : MonoBehaviour
 		{
 			//for (int i = 0; i < GameObject.Find("Tietoa").GetComponent<Singleton>().difficulty; ++i)
 			//	poses.Add(Random.Range(0,5));
-			for (int i = 0; i < 3; ++i)
-				poses.Add(Random.Range(0,6));
+
+			int temp = 0;
+			poses.Add(Random.Range(0,6));
+
+			for (int i = 1; i < 3; ++i)
+			{
+				do {
+				temp = Random.Range(0,6);
+				} while (temp == poses[i-1]);
+
+				poses.Add(temp);
+			}
 		}
 	}
 	private void PlayerOne()
@@ -146,6 +156,6 @@ public class Game : MonoBehaviour
  	IEnumerator End()
 	{
 		yield return new WaitForSeconds (5);
-		Application.LoadLevel (1);
+		Application.LoadLevel (0);
 	}
 }
