@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public class Game : MonoBehaviour 
 {
-	public Texture pose1;
-	public Texture pose2;
-	public Texture pose3;
-	public Texture pose4;
-	public Texture pose5;
-	public Texture pose6;
+	public GameObject pose1;
+	public GameObject pose2;
+	public GameObject pose3;
+	public GameObject pose4;
+	public GameObject pose5;
+	public GameObject pose6;
 
 	public List<int> poses;
 	private PlayerOne playerOne;
@@ -30,6 +30,7 @@ public class Game : MonoBehaviour
 	void Update()
 	{
 		UpdateList ();
+		UpdatePoses ();
 		PlayerOne ();
 
 		if (playerTwo != null)
@@ -38,15 +39,7 @@ public class Game : MonoBehaviour
 			AI();
 	}
 
-	void OnGUI()
-	{
-		for (int i = 0; i < poses.Count; ++i)
-		{
-			GUI.DrawTexture(new Rect(10 + (pose1.width * i + 10),0, pose1.width, pose1.height), GetPose(poses[i]));
-		}
-	}
-
-	private Texture GetPose(int numero)
+	private GameObject GetPose(int numero)
 	{
 		switch (numero)
 		{
@@ -69,7 +62,7 @@ public class Game : MonoBehaviour
 			int temp = 0;
 			poses.Add(Random.Range(0,6));
 
-			for (int i = 1; i < 3; ++i)
+			for (int i = 1; i < 15; ++i)
 			{
 				do {
 				temp = Random.Range(0,6);
@@ -101,6 +94,11 @@ public class Game : MonoBehaviour
 				playerTwo.hp--;
 			else
 				ai.hp--;
+
+			while (GameObject.FindWithTag("Pose") != null)
+			{
+				Destroy(GameObject.FindWithTag("Pose"));
+			}
 		}
 
 		if (playerOne.hp <= 0)
@@ -124,6 +122,11 @@ public class Game : MonoBehaviour
 			poses.Clear();
 			UpdateList();
 			playerOne.hp--;
+
+			while (GameObject.FindWithTag("Pose") != null)
+			{
+				Destroy(GameObject.FindWithTag("Pose"));
+			}
 		}
 
 		if (playerTwo.hp <= 0)
@@ -147,10 +150,25 @@ public class Game : MonoBehaviour
 			poses.Clear();
 			UpdateList();
 			playerOne.hp--;
+
+			while (GameObject.FindWithTag("Pose") != null)
+			{
+				Destroy(GameObject.FindWithTag("Pose"));
+			}
 		}
 
 		if (ai.hp <= 0)
 			StartCoroutine("End");
+	}
+	private void UpdatePoses()
+	{
+		if (GameObject.FindWithTag("Pose") == null)
+		{
+			for (int i = 0; i < poses.Count; ++i)
+			{
+				GameObject.Instantiate(GetPose(poses[i]), new Vector3(-(poses.Count-1)/2 + i,3.3f,0), Quaternion.identity);
+			}
+		}
 	}
 
  	IEnumerator End()

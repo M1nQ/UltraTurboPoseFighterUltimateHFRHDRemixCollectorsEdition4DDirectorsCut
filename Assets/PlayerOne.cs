@@ -56,42 +56,42 @@ public class PlayerOne : MonoBehaviour
 		{
 		    GetComponent<Animator>().Play("Bose1");
 			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
 			Poses.Add(0);
 		}
 		else if (Input.GetKeyDown(pose2))
 		{
 			GetComponent<Animator>().Play("Bose2");
 			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
 			Poses.Add(1);
 		}
 		else if (Input.GetKeyDown(pose3))
 		{
 			GetComponent<Animator>().Play("Bose3");
 			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
 			Poses.Add(2);
 		}
 		else if (Input.GetKeyDown(pose4))
 		{
 			GetComponent<Animator>().Play("Bose4");
 			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
 			Poses.Add(3);
 		}
 		else if (Input.GetKeyDown(pose5))
 		{
 			GetComponent<Animator>().Play("Bose5");
 			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
 			Poses.Add(4);
 		}
 		else if (Input.GetKeyDown(pose6))
 		{
 			GetComponent<Animator>().Play("Bose6");
 			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
 			Poses.Add(5);
 		}
 	}
