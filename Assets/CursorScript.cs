@@ -6,14 +6,21 @@ public class CursorScript : MonoBehaviour {
     public KeyCode right;
     public KeyCode select;
     public KeyCode back;
-    public float yPosition;
-    int selected;
-    bool isSelecting;
-    int currentSelection;
+    float yPosition;
+    public float xPosition;
+    public int selected;
+    public bool isSelecting;
+    public bool againstComputer;
+    public int currentSelection;
+    CursorScript otherPlayerScript;
+    public GameObject otherPlayer;
 	// Use this for initialization
 	void Start () {
         currentSelection = 1;
+        selected = -1;
         isSelecting = true;
+        if(!againstComputer)
+            otherPlayerScript = otherPlayer.GetComponent<CursorScript>();
 	}
 	
 	// Update is called once per frame
@@ -30,8 +37,20 @@ public class CursorScript : MonoBehaviour {
             }
             if (Input.GetKeyDown(select))
             {
-                selected = currentSelection;
-                isSelecting = false;
+                if(againstComputer)
+                {
+                    selected = currentSelection;
+                    isSelecting = false;
+                }
+                if (otherPlayerScript.isSelecting == false && otherPlayerScript.selected == currentSelection)
+                {
+
+                }
+                else
+                {
+                    selected = currentSelection;
+                    isSelecting = false;
+                }
             }
         }
         else
@@ -39,12 +58,20 @@ public class CursorScript : MonoBehaviour {
             if(Input.GetKeyDown(back))
             {
                 isSelecting = true;
+                selected = -1;
             }
         }
         if (currentSelection < 1)
             currentSelection = 5;
         else if (currentSelection > 5)
             currentSelection = 1;
-        transform.position = new Vector3(-9 + 3*currentSelection, yPosition, 0);
+        if (isSelecting)
+        {
+            yPosition = 1.3f;
+        }
+        else
+            yPosition = 1;
+
+        transform.position = new Vector3(-9 + 3*currentSelection+xPosition, yPosition, 0);
 	}
 }
