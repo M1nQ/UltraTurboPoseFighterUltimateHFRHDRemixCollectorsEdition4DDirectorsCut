@@ -6,27 +6,45 @@ public class CursorScript : MonoBehaviour {
     public KeyCode right;
     public KeyCode select;
     public KeyCode back;
+    public float yPosition;
     int selected;
+    bool isSelecting;
     int currentSelection;
 	// Use this for initialization
 	void Start () {
         currentSelection = 1;
+        isSelecting = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyDown(left))
+        if (isSelecting == true)
         {
-            currentSelection -= 1;
+            if (Input.GetKeyDown(left))
+            {
+                currentSelection -= 1;
+            }
+            if (Input.GetKeyDown(right))
+            {
+                currentSelection += 1;
+            }
+            if (Input.GetKeyDown(select))
+            {
+                selected = currentSelection;
+                isSelecting = false;
+            }
         }
-        if (Input.GetKeyDown(right))
+        else
         {
-            currentSelection += 1;
+            if(Input.GetKeyDown(back))
+            {
+                isSelecting = true;
+            }
         }
         if (currentSelection < 1)
             currentSelection = 5;
         else if (currentSelection > 5)
             currentSelection = 1;
-        transform.position = new Vector3(-9 + 3*currentSelection, 2, 0);
+        transform.position = new Vector3(-9 + 3*currentSelection, yPosition, 0);
 	}
 }
