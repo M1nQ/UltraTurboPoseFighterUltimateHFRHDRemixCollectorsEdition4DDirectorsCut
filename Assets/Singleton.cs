@@ -9,6 +9,8 @@ public class Singleton : MonoBehaviour
 	public string playerOneChar;
 	[HideInInspector]
 	public string playerTwoChar;
+	[HideInInspector]
+	public int difficulty;
 
 	void Awake ()
 	{
