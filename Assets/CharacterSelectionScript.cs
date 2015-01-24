@@ -7,7 +7,8 @@ public class CharacterSelectionScript : MonoBehaviour {
     CursorScript p2Selection = GameObject.Find("Cursor p2").GetComponent<CursorScript>();
 	// Use this for initialization
 	void Start () {
-
+        p1Selection = GameObject.Find("Cursor p1").GetComponent<CursorScript>();
+        p2Selection = GameObject.Find("Cursor p2").GetComponent<CursorScript>();
 	}
 	
 	// Update is called once per frame
