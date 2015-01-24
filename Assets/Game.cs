@@ -66,7 +66,7 @@ public class Game : MonoBehaviour
 			//for (int i = 0; i < GameObject.Find("Tietoa").GetComponent<Singleton>().difficulty; ++i)
 			//	poses.Add(Random.Range(0,5));
 			for (int i = 0; i < 3; ++i)
-				poses.Add(Random.Range(0,5));
+				poses.Add(Random.Range(0,6));
 		}
 	}
 	private void PlayerOne()
