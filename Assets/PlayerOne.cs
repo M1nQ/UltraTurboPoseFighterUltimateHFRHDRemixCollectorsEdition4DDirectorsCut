@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerOne : MonoBehaviour 
 {
@@ -24,25 +25,59 @@ public class PlayerOne : MonoBehaviour
 	public AudioClip Häviö;
 	public AudioClip Voitto;
 
+	public RuntimeAnimatorController jussi;
+	public RuntimeAnimatorController samuli;
+	public RuntimeAnimatorController miikka;
+	public RuntimeAnimatorController toni;
+	public RuntimeAnimatorController nanne;
+
+	public Sprite defaultJussi;
+	public Sprite defaultSamuli;
+	public Sprite defaultMiikka;
+	public Sprite defaultToni;
+	public Sprite defaultNanne;
+
 	[HideInInspector]
-	public Sprite defaultPose;
-	[HideInInspector]
-	public RuntimeAnimatorController animations;
+	public List<int> Poses;
+
+	void Start()
+	{
+		Poses = new List<int> ();
+		SetPlayer ();
+	}
 
 	void Update()
 	{
 		if (Input.GetKeyDown(pose1))
+		{
 		    GetComponent<Animator>().Play("Bose1");
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+		}
 		else if (Input.GetKeyDown(pose2))
+		{
 			GetComponent<Animator>().Play("Bose2");
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+		}
 		else if (Input.GetKeyDown(pose3))
+		{
 			GetComponent<Animator>().Play("Bose3");
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+		}
 		else if (Input.GetKeyDown(pose4))
+		{
 			GetComponent<Animator>().Play("Bose4");
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+		}
 		else if (Input.GetKeyDown(pose5))
+		{
 			GetComponent<Animator>().Play("Bose5");
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+		}
 		else if (Input.GetKeyDown(pose6))
+		{
 			GetComponent<Animator>().Play("Bose6");
+			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,10)));
+		}
 	}
 
 	private AudioClip GetRandomHuuto(int number)
@@ -62,5 +97,36 @@ public class PlayerOne : MonoBehaviour
 		case 10: return huuto11;
 		default: return huuto1;
 		}
+	}
+	private void SetPlayer()
+	{
+		if (name = "PlayerOne")
+			GetComponent<Animator>().runtimeAnimatorController = GetAnimations(GameObject.Find("Tietoa").GetComponent<Singleton>().playerOneChar);
+		else
+		{
+			if (GameObject.Find("Tietoa").GetComponent<Singleton>().twoPlayers)
+				GetComponent<Animator>().runtimeAnimatorController = GetAnimations(GameObject.Find("Tietoa").GetComponent<Singleton>().playerTwoChar);
+			else
+			{
+				gameObject.AddComponent<SpugeAI>();
+				Destroy(this);
+			}
+		}
+	}
+	private RuntimeAnimatorController GetAnimations(string nimi)
+	{
+		if (nimi == "jussi") return jussi;
+		else if (nimi == "samuli") return samuli;
+		else if (nimi == "miikka") return miikka;
+		else if (nimi == "toni") return toni;
+		else return nanne;
+	}
+	private Sprite GetDefaultPose (string nimi)
+	{
+		if (nimi == "jussi") return defaultJussi;
+		else if (nimi == "samuli") return defaultSamuli;
+		else if (nimi == "miikka") return defaultMiikka;
+		else if (nimi == "toni") return defaultToni;
+		else return defaultNanne;
 	}
 }
