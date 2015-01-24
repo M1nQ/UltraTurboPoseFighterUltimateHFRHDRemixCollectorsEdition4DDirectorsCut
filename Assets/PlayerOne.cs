@@ -25,6 +25,20 @@ public class PlayerOne : MonoBehaviour
 	public AudioClip Häviö;
 	public AudioClip Voitto;
 
+	public AudioClip Ahuuto1;
+	public AudioClip Ahuuto2;
+	public AudioClip Ahuuto3;
+	public AudioClip Ahuuto4;
+	public AudioClip Ahuuto5;
+	public AudioClip Ahuuto6;
+	public AudioClip Ahuuto7;
+	public AudioClip Ahuuto8;
+	public AudioClip Ahuuto9;
+	public AudioClip Ahuuto10;
+	public AudioClip Ahuuto11;
+	public AudioClip AHäviö;
+	public AudioClip AVoitto;
+
 	public RuntimeAnimatorController jussi;
 	public RuntimeAnimatorController samuli;
 	public RuntimeAnimatorController miikka;
@@ -98,20 +112,41 @@ public class PlayerOne : MonoBehaviour
 
 	private AudioClip GetRandomHuuto(int number)
 	{
-		switch (number)
+		if (name == "PlayerOne")
 		{
-		case 0: return huuto1;
-		case 1: return huuto2;
-		case 2: return huuto3;
-		case 3: return huuto4;
-		case 4: return huuto5;
-		case 5: return huuto6;
-		case 6: return huuto7;
-		case 7: return huuto8;
-		case 8: return huuto9;
-		case 9: return huuto10;
-		case 10: return huuto11;
-		default: return huuto1;
+			switch (number)
+			{
+			case 0: return huuto1;
+			case 1: return huuto2;
+			case 2: return huuto3;
+			case 3: return huuto4;
+			case 4: return huuto5;
+			case 5: return huuto6;
+			case 6: return huuto7;
+			case 7: return huuto8;
+			case 8: return huuto9;
+			case 9: return huuto10;
+			case 10: return huuto11;
+			default: return huuto1;
+			}
+		}
+		else
+		{
+			switch (number)
+			{
+			case 0: return Ahuuto1;
+			case 1: return Ahuuto2;
+			case 2: return Ahuuto3;
+			case 3: return Ahuuto4;
+			case 4: return Ahuuto5;
+			case 5: return Ahuuto6;
+			case 6: return Ahuuto7;
+			case 7: return Ahuuto8;
+			case 8: return Ahuuto9;
+			case 9: return Ahuuto10;
+			case 10: return Ahuuto11;
+			default: return Ahuuto1;
+			}
 		}
 	}
 	private void SetPlayer()
@@ -120,13 +155,13 @@ public class PlayerOne : MonoBehaviour
 			GetComponent<Animator>().runtimeAnimatorController = GetAnimations(GameObject.Find("Tietoa").GetComponent<Singleton>().playerOneChar);
 		else
 		{
-			if (GameObject.Find("Tietoa").GetComponent<Singleton>().twoPlayers)
-				GetComponent<Animator>().runtimeAnimatorController = GetAnimations(GameObject.Find("Tietoa").GetComponent<Singleton>().playerTwoChar);
-			else
-			{
+			//if (GameObject.Find("Tietoa").GetComponent<Singleton>().twoPlayers)
+			//	GetComponent<Animator>().runtimeAnimatorController = GetAnimations(GameObject.Find("Tietoa").GetComponent<Singleton>().playerTwoChar);
+			//else
+			//{
 				gameObject.AddComponent<SpugeAI>();
 				Destroy(this);
-			}
+			//}
 		}
 	}
 	private RuntimeAnimatorController GetAnimations(string nimi)

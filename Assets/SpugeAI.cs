@@ -46,7 +46,7 @@ public class SpugeAI : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-        game = GameObject.Find("peli").GetComponent<Game>();
+        game = GameObject.Find("Peli").GetComponent<Game>();
         quessInterval = Random.Range(minQuess, maxQuess);
         quess = 0;
 	}
