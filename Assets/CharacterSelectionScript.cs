@@ -14,9 +14,19 @@ public class CharacterSelectionScript : MonoBehaviour {
 	void Update () {
 
 
-	    if(p1Selection.isSelecting == false && p2Selection.isSelecting == false)
+	    if(p1Selection.isSelecting == false && p2Selection.isSelecting == false && p1Selection.againstComputer == false)
         {
-
+            if (Input.GetKeyDown(p1Selection.select) || Input.GetKeyDown(p2Selection.select))
+            {
+                //go to posing
+            }
+        }
+        else if(p1Selection.isSelecting == false && p1Selection.againstComputer == true)
+        {
+            if(Input.GetKeyDown(p1Selection.select))
+            {
+                //Go to posing
+            }
         }
 	}
 }
