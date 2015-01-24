@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CharacterSelectionScript.cs" />
      <Compile Include="Assets\CursorScript.cs" />
      <Compile Include="Assets\PlayerOne.cs" />
      <Compile Include="Assets\Singleton.cs" />
