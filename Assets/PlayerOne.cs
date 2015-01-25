@@ -59,9 +59,12 @@ public class PlayerOne : MonoBehaviour
 	public List<int> Poses;
 	[HideInInspector]
 	public int combo;
+	[HideInInspector]
+	public bool disabled;
 
 	void Start()
 	{
+		disabled = false;
         flash = GameObject.Find("PlayerOneFlash");
         
 		Poses = new List<int> ();
@@ -70,60 +73,53 @@ public class PlayerOne : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(pose1))
-		{
-		    GetComponent<Animator>().Play("Bose1");
-            flash.GetComponent<Animator>().Play("Shadow1");
-            flash.GetComponent<FlashScript>().Flash();
-			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
-			Poses.Add(0);
-		}
-		else if (Input.GetKeyDown(pose2))
-		{
-			GetComponent<Animator>().Play("Bose2");
-            flash.GetComponent<Animator>().Play("Shadow2");
-            flash.GetComponent<FlashScript>().Flash();
-			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
-			Poses.Add(1);
-		}
-		else if (Input.GetKeyDown(pose3))
-		{
-			GetComponent<Animator>().Play("Bose3");
-            flash.GetComponent<Animator>().Play("Shadow3");
-            flash.GetComponent<FlashScript>().Flash();
-			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
-			Poses.Add(2);
-		}
-		else if (Input.GetKeyDown(pose4))
-		{
-			GetComponent<Animator>().Play("Bose4");
-            flash.GetComponent<Animator>().Play("Shadow4");
-            flash.GetComponent<FlashScript>().Flash();
-			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
-			Poses.Add(3);
-		}
-		else if (Input.GetKeyDown(pose5))
-		{
-			GetComponent<Animator>().Play("Bose5");
-            flash.GetComponent<Animator>().Play("Shadow5");
-            flash.GetComponent<FlashScript>().Flash();
-			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
-			Poses.Add(4);
-		}
-		else if (Input.GetKeyDown(pose6))
-		{
-			GetComponent<Animator>().Play("Bose6");
-            flash.GetComponent<Animator>().Play("Shadow6");
-            flash.GetComponent<FlashScript>().Flash();
-			GetComponent<AudioSource>().Stop();
-			GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0,11)));
-			Poses.Add(5);
-		}
+		if (!disabled) {
+						if (Input.GetKeyDown (pose1)) {
+								GetComponent<Animator> ().Play ("Bose1");
+								flash.GetComponent<Animator> ().Play ("Shadow1");
+								flash.GetComponent<FlashScript> ().Flash ();
+								GetComponent<AudioSource> ().Stop ();
+								GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 11)));
+								Poses.Add (0);
+						} else if (Input.GetKeyDown (pose2)) {
+								GetComponent<Animator> ().Play ("Bose2");
+								flash.GetComponent<Animator> ().Play ("Shadow2");
+								flash.GetComponent<FlashScript> ().Flash ();
+								GetComponent<AudioSource> ().Stop ();
+								GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 11)));
+								Poses.Add (1);
+						} else if (Input.GetKeyDown (pose3)) {
+								GetComponent<Animator> ().Play ("Bose3");
+								flash.GetComponent<Animator> ().Play ("Shadow3");
+								flash.GetComponent<FlashScript> ().Flash ();
+								GetComponent<AudioSource> ().Stop ();
+								GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 11)));
+								Poses.Add (2);
+						} else if (Input.GetKeyDown (pose4)) {
+								GetComponent<Animator> ().Play ("Bose4");
+								flash.GetComponent<Animator> ().Play ("Shadow4");
+								flash.GetComponent<FlashScript> ().Flash ();
+								GetComponent<AudioSource> ().Stop ();
+								GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 11)));
+								Poses.Add (3);
+						} else if (Input.GetKeyDown (pose5)) {
+								GetComponent<Animator> ().Play ("Bose5");
+								flash.GetComponent<Animator> ().Play ("Shadow5");
+								flash.GetComponent<FlashScript> ().Flash ();
+								GetComponent<AudioSource> ().Stop ();
+								GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 11)));
+								Poses.Add (4);
+						} else if (Input.GetKeyDown (pose6)) {
+								GetComponent<Animator> ().Play ("Bose6");
+								flash.GetComponent<Animator> ().Play ("Shadow6");
+								flash.GetComponent<FlashScript> ().Flash ();
+								GetComponent<AudioSource> ().Stop ();
+								GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 11)));
+								Poses.Add (5);
+						}
+				}
+
+		UpdateHP ();
 	}
 
 	private AudioClip GetRandomHuuto(int number)
@@ -195,5 +191,9 @@ public class PlayerOne : MonoBehaviour
 		else if (nimi == "miikka") return defaultMiikka;
 		else if (nimi == "toni") return defaultToni;
 		else return defaultNanne;
+	}
+	private void UpdateHP()
+	{
+		transform.FindChild ("bar").transform.localScale = new Vector3 (hp / 3f, 0.5f, 1f);
 	}
 }
