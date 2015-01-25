@@ -45,9 +45,12 @@ public class SpugeAI : MonoBehaviour
 	public List<int> poses;
 	[HideInInspector]
 	public int combo;
+	[HideInInspector]
+	public bool disabled;
 
 	// Use this for initialization
 	void Start () {
+		disabled = false;
         game = GameObject.Find("Peli").GetComponent<Game>();
         flash = GameObject.Find("PlayerTwoFlash");
         quessInterval = Random.Range(minQuess, maxQuess);
@@ -56,103 +59,79 @@ public class SpugeAI : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        currentTime += Time.deltaTime;
-        if(currentTime >= quessInterval && game.poses.Count > 0)
-        {
-            if(correctPercent > Random.Range(0.0f,100.0f))
-            {
-                if (game.poses[poses.Count] == 0)
-                {
-                    quess = 0;
-                }
-                else if (game.poses[poses.Count] == 1)
-                {
-                    quess = 1;
-                }
-                else if (game.poses[poses.Count] == 2)
-                {
-                    quess = 2;
-                }
-                else if (game.poses[poses.Count] == 3)
-                {
-                    quess = 3;
-                }
-                else if (game.poses[poses.Count] == 4)
-                {
-                    quess = 4;
-                }
-                else if (game.poses[poses.Count] == 5)
-                {
-                    quess = 5;
-                }
-            }
-            else
-            {
-                quess = Random.Range(0,6);
-                while(quess == game.poses[poses.Count])
-                {
-                    quess = Random.Range(0, 6);
-                }
-            }
+		if (!disabled) {
+						currentTime += Time.deltaTime;
+						if (currentTime >= quessInterval && game.poses.Count > 0) {
+								if (correctPercent > Random.Range (0.0f, 100.0f)) {
+										if (game.poses [poses.Count] == 0) {
+												quess = 0;
+										} else if (game.poses [poses.Count] == 1) {
+												quess = 1;
+										} else if (game.poses [poses.Count] == 2) {
+												quess = 2;
+										} else if (game.poses [poses.Count] == 3) {
+												quess = 3;
+										} else if (game.poses [poses.Count] == 4) {
+												quess = 4;
+										} else if (game.poses [poses.Count] == 5) {
+												quess = 5;
+										}
+								} else {
+										quess = Random.Range (0, 6);
+										while (quess == game.poses[poses.Count]) {
+												quess = Random.Range (0, 6);
+										}
+								}
 
-            if (quess == 0)
-            {
-                GetComponent<Animator>().Play("Bose1");
-                flash.GetComponent<Animator>().Play("Shadow1");
-                flash.GetComponent<FlashScript>().Flash();
-                GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
-                poses.Add(0);
-            }
-            else if (quess == 1)
-            {
-                GetComponent<Animator>().Play("Bose2");
-                flash.GetComponent<Animator>().Play("Shadow2");
-                flash.GetComponent<FlashScript>().Flash();
-                GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
-                poses.Add(1);
-            }
-            else if (quess == 2)
-            {
-                GetComponent<Animator>().Play("Bose3");
-                flash.GetComponent<Animator>().Play("Shadow3");
-                flash.GetComponent<FlashScript>().Flash();
-                GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
-                poses.Add(2);
-            }
-            else if (quess == 3)
-            {
-                GetComponent<Animator>().Play("Bose4");
-                flash.GetComponent<Animator>().Play("Shadow4");
-                flash.GetComponent<FlashScript>().Flash();
-                GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
-                poses.Add(3);
-            }
-            else if (quess == 4)
-            {
-                GetComponent<Animator>().Play("Bose5");
-                flash.GetComponent<Animator>().Play("Shadow5");
-                flash.GetComponent<FlashScript>().Flash();
-                GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
-                poses.Add(4);
-            }
-            else if (quess == 5)
-            {
-                GetComponent<Animator>().Play("Bose6");
-                flash.GetComponent<Animator>().Play("Shadow6");
-                flash.GetComponent<FlashScript>().Flash();
-                GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
-                poses.Add(5);
-            }
+								if (quess == 0) {
+										GetComponent<Animator> ().Play ("Bose1");
+										flash.GetComponent<Animator> ().Play ("Shadow1");
+										flash.GetComponent<FlashScript> ().Flash ();
+										GetComponent<AudioSource> ().Stop ();
+										GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 10)));
+										poses.Add (0);
+								} else if (quess == 1) {
+										GetComponent<Animator> ().Play ("Bose2");
+										flash.GetComponent<Animator> ().Play ("Shadow2");
+										flash.GetComponent<FlashScript> ().Flash ();
+										GetComponent<AudioSource> ().Stop ();
+										GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 10)));
+										poses.Add (1);
+								} else if (quess == 2) {
+										GetComponent<Animator> ().Play ("Bose3");
+										flash.GetComponent<Animator> ().Play ("Shadow3");
+										flash.GetComponent<FlashScript> ().Flash ();
+										GetComponent<AudioSource> ().Stop ();
+										GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 10)));
+										poses.Add (2);
+								} else if (quess == 3) {
+										GetComponent<Animator> ().Play ("Bose4");
+										flash.GetComponent<Animator> ().Play ("Shadow4");
+										flash.GetComponent<FlashScript> ().Flash ();
+										GetComponent<AudioSource> ().Stop ();
+										GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 10)));
+										poses.Add (3);
+								} else if (quess == 4) {
+										GetComponent<Animator> ().Play ("Bose5");
+										flash.GetComponent<Animator> ().Play ("Shadow5");
+										flash.GetComponent<FlashScript> ().Flash ();
+										GetComponent<AudioSource> ().Stop ();
+										GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 10)));
+										poses.Add (4);
+								} else if (quess == 5) {
+										GetComponent<Animator> ().Play ("Bose6");
+										flash.GetComponent<Animator> ().Play ("Shadow6");
+										flash.GetComponent<FlashScript> ().Flash ();
+										GetComponent<AudioSource> ().Stop ();
+										GetComponent<AudioSource> ().PlayOneShot (GetRandomHuuto (Random.Range (0, 10)));
+										poses.Add (5);
+								}
 
-            quessInterval = Random.Range(minQuess, maxQuess);
-            currentTime = 0;
-        }
+								quessInterval = Random.Range (minQuess, maxQuess);
+								currentTime = 0;
+						}
+				}
+		UpdateHP ();
 	}
 
     private AudioClip GetRandomHuuto(int number)
@@ -190,4 +169,8 @@ public class SpugeAI : MonoBehaviour
         else if (nimi == "toni") return defaultToni;
         else return defaultNanne;
     }
+	private void UpdateHP()
+	{
+		transform.FindChild ("bar").transform.localScale = new Vector3 (hp / 3f, 0.5f, 1f);
+	}
 }

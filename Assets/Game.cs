@@ -110,7 +110,26 @@ public class Game : MonoBehaviour
         Indicator1.transform.position = new Vector3(-(poses.Count - 1) / 2 + playerOne.Poses.Count, 4.3f, 0);
 
 		if (playerOne.hp <= 0)
+		{
 			StartCoroutine("End");
+			playerOne.disabled = true;
+
+			if (playerTwo != null)
+			{
+				playerTwo.disabled = true;
+				playerTwo.gameObject.GetComponent<AudioSource>().PlayOneShot(playerTwo.AVoitto);
+				playerTwo.gameObject.GetComponent<Animator>().Play("win");
+			}
+			else
+			{
+				ai.disabled = true;
+				ai.gameObject.GetComponent<AudioSource>().PlayOneShot(ai.Voitto);
+				ai.gameObject.GetComponent<Animator>().Play("win");
+			}
+
+			playerOne.gameObject.GetComponent<AudioSource>().PlayOneShot(playerOne.Häviö);
+			playerOne.gameObject.GetComponent<Animator>().Play("loss");
+		}
 	}
 	private void PlayerTwo()
 	{
@@ -137,8 +156,16 @@ public class Game : MonoBehaviour
 
         Indicator2.transform.position = new Vector3(-(poses.Count - 1) / 2 + playerTwo.Poses.Count, 2.3f, 0);
 
-		if (playerTwo.hp <= 0)
+		if (playerTwo.hp <= 0) 
+		{
 			StartCoroutine("End");
+			playerOne.disabled = true;
+			playerTwo.disabled = true;
+			playerTwo.gameObject.GetComponent<AudioSource>().PlayOneShot(playerTwo.AHäviö);
+			playerTwo.gameObject.GetComponent<Animator>().Play("loss");
+			playerOne.gameObject.GetComponent<AudioSource>().PlayOneShot(playerOne.Voitto);
+			playerOne.gameObject.GetComponent<Animator>().Play("win");
+		}
 	}
 	private void AI()
 	{
@@ -163,11 +190,18 @@ public class Game : MonoBehaviour
 			for (int i = 0; i < poseAmount; ++i)
 				Destroy(GameObject.FindGameObjectsWithTag("Pose")[i]);
 		}
-        Debug.Log("SAATANA");
         Indicator2.transform.position = new Vector3(-(poses.Count - 1) / 2 + ai.poses.Count, 2.3f, 0);
 
-		if (ai.hp <= 0)
+		if (ai.hp <= 0) 
+		{
 			StartCoroutine("End");
+			playerOne.disabled = true;
+			ai.disabled = true;
+			ai.gameObject.GetComponent<AudioSource>().PlayOneShot(ai.Häviö);
+			ai.gameObject.GetComponent<Animator>().Play("loss");
+			playerOne.gameObject.GetComponent<AudioSource>().PlayOneShot(playerOne.Voitto);
+			playerOne.gameObject.GetComponent<Animator>().Play("win");
+		}
 	}
 	private void UpdatePoses()
 	{
