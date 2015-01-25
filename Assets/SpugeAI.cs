@@ -39,7 +39,7 @@ public class SpugeAI : MonoBehaviour
     public Sprite defaultToni;
     public Sprite defaultNanne;
 
-	[HideInInspector]
+    //[HideInInspector]
 	public List<int> poses;
 	[HideInInspector]
 	public int combo;
@@ -54,7 +54,7 @@ public class SpugeAI : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
         currentTime += Time.deltaTime;
-        if(currentTime >= quessInterval)
+        if(currentTime >= quessInterval && game.poses.Count > 0)
         {
             if(correctPercent > Random.Range(0.0f,100.0f))
             {

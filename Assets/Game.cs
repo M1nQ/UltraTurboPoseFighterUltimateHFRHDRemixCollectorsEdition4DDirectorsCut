@@ -62,7 +62,7 @@ public class Game : MonoBehaviour
 			int temp = 0;
 			poses.Add(Random.Range(0,6));
 
-			for (int i = 1; i < 15; ++i)
+			for (int i = 1; i < 5; ++i)
 			{
 				do {
 				temp = Random.Range(0,6);
@@ -94,11 +94,11 @@ public class Game : MonoBehaviour
 				playerTwo.hp--;
 			else
 				ai.hp--;
-
-			while (GameObject.FindWithTag("Pose") != null)
-			{
-				Destroy(GameObject.FindWithTag("Pose"));
-			}
+            
+            //while (GameObject.FindWithTag("Pose") != null)
+            //{
+            //    Destroy(GameObject.FindWithTag("Pose"));
+            //}
 		}
 
 		if (playerOne.hp <= 0)
@@ -123,10 +123,10 @@ public class Game : MonoBehaviour
 			UpdateList();
 			playerOne.hp--;
 
-			while (GameObject.FindWithTag("Pose") != null)
-			{
-				Destroy(GameObject.FindWithTag("Pose"));
-			}
+            //while (GameObject.FindWithTag("Pose") != null)
+            //{
+            //    Destroy(GameObject.FindWithTag("Pose"));
+            //}
 		}
 
 		if (playerTwo.hp <= 0)
@@ -151,10 +151,10 @@ public class Game : MonoBehaviour
 			UpdateList();
 			playerOne.hp--;
 
-			while (GameObject.FindWithTag("Pose") != null)
-			{
-				Destroy(GameObject.FindWithTag("Pose"));
-			}
+            //while (GameObject.FindWithTag("Pose") != null)
+            //{
+            //    Destroy(GameObject.FindWithTag("Pose"));
+            //}
 		}
 
 		if (ai.hp <= 0)

@@ -1,6 +1,20 @@
 fileFormatVersion: 2
 guid: 9e93a8f4262f02c4d89f7a8deafbe7f5
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: poseSheet_0
+    21300002: poseSheet_1
+    21300004: poseSheet_2
+    21300006: poseSheet_3
+    21300008: poseSheet_4
+    21300010: poseSheet_5
+    21300012: poseSheet_6
+    21300014: poseSheet_7
+    21300016: poseSheet_8
+    21300018: poseSheet_9
+    21300020: poseSheet_10
+    21300022: poseSheet_11
+    21300024: poseSheet_12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
