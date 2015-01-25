@@ -63,6 +63,7 @@ public class PlayerOne : MonoBehaviour
 	void Start()
 	{
         flash = GameObject.Find("PlayerOneFlash");
+        
 		Poses = new List<int> ();
 		//SetPlayer ();
 	}

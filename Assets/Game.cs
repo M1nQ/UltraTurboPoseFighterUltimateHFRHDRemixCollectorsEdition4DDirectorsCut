@@ -11,6 +11,9 @@ public class Game : MonoBehaviour
 	public GameObject pose5;
 	public GameObject pose6;
 
+    public GameObject Indicator1;
+    public GameObject Indicator2;
+
 	public List<int> poses;
 	private PlayerOne playerOne;
 	private PlayerOne playerTwo;
@@ -22,6 +25,9 @@ public class Game : MonoBehaviour
 		// poseAmount = GameObject.Find("Tietoa").GetComponent<Singleton>().difficulty;
 		poses = new List<int> ();
 		playerOne = GameObject.Find ("PlayerOne").GetComponent<PlayerOne> ();
+
+        Indicator1 = GameObject.Find("Player1Indicator");
+        Indicator2 = GameObject.Find("Player2Indicator");
 
 		if (GameObject.Find("PlayerTwo").GetComponent<PlayerOne>() != null)
 			playerTwo = GameObject.Find("PlayerTwo").GetComponent<PlayerOne>();
@@ -101,6 +107,8 @@ public class Game : MonoBehaviour
 				Destroy(GameObject.FindGameObjectsWithTag("Pose")[i]);
 		}
 
+        Indicator1.transform.position = new Vector3(-(poses.Count - 1) / 2 + playerOne.Poses.Count, 4.3f, 0);
+
 		if (playerOne.hp <= 0)
 			StartCoroutine("End");
 	}
@@ -127,11 +135,14 @@ public class Game : MonoBehaviour
 				Destroy(GameObject.FindGameObjectsWithTag("Pose")[i]);
 		}
 
+        Indicator2.transform.position = new Vector3(-(poses.Count - 1) / 2 + playerTwo.Poses.Count, 2.3f, 0);
+
 		if (playerTwo.hp <= 0)
 			StartCoroutine("End");
 	}
 	private void AI()
 	{
+
 		for (int i = 0; i < ai.poses.Count; ++i)
 		{
 			if (ai.poses[i] != poses[i])
@@ -152,6 +163,8 @@ public class Game : MonoBehaviour
 			for (int i = 0; i < poseAmount; ++i)
 				Destroy(GameObject.FindGameObjectsWithTag("Pose")[i]);
 		}
+        Debug.Log("SAATANA");
+        Indicator2.transform.position = new Vector3(-(poses.Count - 1) / 2 + ai.poses.Count, 2.3f, 0);
 
 		if (ai.hp <= 0)
 			StartCoroutine("End");
