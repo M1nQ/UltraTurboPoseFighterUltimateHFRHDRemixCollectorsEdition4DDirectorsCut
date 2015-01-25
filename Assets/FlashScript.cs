@@ -13,7 +13,7 @@ public class FlashScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         color = new Color(1, 1, 1,1);
-        alpha = 1;
+        alpha = 0;
         alphaAcc = 0;
         alphaS = 0.08f;
         scale = 1;
@@ -59,8 +59,10 @@ public class FlashScript : MonoBehaviour {
         color.g = Random.Range(0.3f, 1.0f);
         color.b = Random.Range(0.3f, 1.0f);
         alpha = 1;
-        alphaS = 1;
+        alphaS = 0.08f;
+        alphaAcc = 0;
         scale = 1;
-        scaleS = 1f;
+        scaleS = 0.08f;
+        scaleAcc = 0;
     }
 }

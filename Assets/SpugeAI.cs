@@ -39,6 +39,8 @@ public class SpugeAI : MonoBehaviour
     public Sprite defaultToni;
     public Sprite defaultNanne;
 
+    public GameObject flash;
+
     //[HideInInspector]
 	public List<int> poses;
 	[HideInInspector]
@@ -47,6 +49,7 @@ public class SpugeAI : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         game = GameObject.Find("Peli").GetComponent<Game>();
+        flash = GameObject.Find("PlayerTwoFlash");
         quessInterval = Random.Range(minQuess, maxQuess);
         quess = 0;
 	}
@@ -95,6 +98,8 @@ public class SpugeAI : MonoBehaviour
             if (quess == 0)
             {
                 GetComponent<Animator>().Play("Bose1");
+                flash.GetComponent<Animator>().Play("Shadow1");
+                flash.GetComponent<FlashScript>().Flash();
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
                 poses.Add(0);
@@ -102,6 +107,8 @@ public class SpugeAI : MonoBehaviour
             else if (quess == 1)
             {
                 GetComponent<Animator>().Play("Bose2");
+                flash.GetComponent<Animator>().Play("Shadow2");
+                flash.GetComponent<FlashScript>().Flash();
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
                 poses.Add(1);
@@ -109,6 +116,8 @@ public class SpugeAI : MonoBehaviour
             else if (quess == 2)
             {
                 GetComponent<Animator>().Play("Bose3");
+                flash.GetComponent<Animator>().Play("Shadow3");
+                flash.GetComponent<FlashScript>().Flash();
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
                 poses.Add(2);
@@ -116,6 +125,8 @@ public class SpugeAI : MonoBehaviour
             else if (quess == 3)
             {
                 GetComponent<Animator>().Play("Bose4");
+                flash.GetComponent<Animator>().Play("Shadow4");
+                flash.GetComponent<FlashScript>().Flash();
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
                 poses.Add(3);
@@ -123,6 +134,8 @@ public class SpugeAI : MonoBehaviour
             else if (quess == 4)
             {
                 GetComponent<Animator>().Play("Bose5");
+                flash.GetComponent<Animator>().Play("Shadow5");
+                flash.GetComponent<FlashScript>().Flash();
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
                 poses.Add(4);
@@ -130,6 +143,8 @@ public class SpugeAI : MonoBehaviour
             else if (quess == 5)
             {
                 GetComponent<Animator>().Play("Bose6");
+                flash.GetComponent<Animator>().Play("Shadow6");
+                flash.GetComponent<FlashScript>().Flash();
                 GetComponent<AudioSource>().Stop();
                 GetComponent<AudioSource>().PlayOneShot(GetRandomHuuto(Random.Range(0, 10)));
                 poses.Add(5);
