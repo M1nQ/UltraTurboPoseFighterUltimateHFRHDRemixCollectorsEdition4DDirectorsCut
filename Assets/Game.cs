@@ -15,9 +15,11 @@ public class Game : MonoBehaviour
 	private PlayerOne playerOne;
 	private PlayerOne playerTwo;
 	private SpugeAI ai;
+	public int poseAmount;
 
 	void Start()
 	{
+		// poseAmount = GameObject.Find("Tietoa").GetComponent<Singleton>().difficulty;
 		poses = new List<int> ();
 		playerOne = GameObject.Find ("PlayerOne").GetComponent<PlayerOne> ();
 
@@ -62,7 +64,7 @@ public class Game : MonoBehaviour
 			int temp = 0;
 			poses.Add(Random.Range(0,6));
 
-			for (int i = 1; i < 5; ++i)
+			for (int i = 1; i < poseAmount; ++i)
 			{
 				do {
 				temp = Random.Range(0,6);
@@ -95,10 +97,8 @@ public class Game : MonoBehaviour
 			else
 				ai.hp--;
             
-            //while (GameObject.FindWithTag("Pose") != null)
-            //{
-            //    Destroy(GameObject.FindWithTag("Pose"));
-            //}
+			for (int i = 0; i < poseAmount; ++i)
+				Destroy(GameObject.FindGameObjectsWithTag("Pose")[i]);
 		}
 
 		if (playerOne.hp <= 0)
@@ -123,10 +123,8 @@ public class Game : MonoBehaviour
 			UpdateList();
 			playerOne.hp--;
 
-            //while (GameObject.FindWithTag("Pose") != null)
-            //{
-            //    Destroy(GameObject.FindWithTag("Pose"));
-            //}
+			for (int i = 0; i < poseAmount; ++i)
+				Destroy(GameObject.FindGameObjectsWithTag("Pose")[i]);
 		}
 
 		if (playerTwo.hp <= 0)
@@ -151,10 +149,8 @@ public class Game : MonoBehaviour
 			UpdateList();
 			playerOne.hp--;
 
-            //while (GameObject.FindWithTag("Pose") != null)
-            //{
-            //    Destroy(GameObject.FindWithTag("Pose"));
-            //}
+			for (int i = 0; i < poseAmount; ++i)
+				Destroy(GameObject.FindGameObjectsWithTag("Pose")[i]);
 		}
 
 		if (ai.hp <= 0)
